@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Negociações</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+
+</head>
+
+<body class="container">
+
+    <h1 class="text-center">Agenda</h1>
+
+    <form class="form">
+
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="number" id="id" class="form-control" required autofocus />
+        </div>
+
+        <div class="form-group">
+            <label for="nome">NOME</label>
+            <input id="nome" type="text" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="ddd">DDD</label>
+            <input id="ddd" type="text" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="numero">NÚMERO</label>
+            <input type="text" id="numero" class="form-control" required />
+        </div>
+
+        <button class="btn btn-primary" type="submit">Incluir</button>
+    </form>
+
+    <div class="text-center">
+        <button class="btn btn-primary text-center" type="button">
+            Importar
+        </button>
+        <button class="btn btn-primary text-center" type="button">
+            Apagar
+        </button>
+    </div>
+    <br>
+    <br>
+
+    <table class="table table-hover table-bordered" id="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>DDD</th>
+                <th>NÚMERO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+        <tfoot>
+        </tfoot>
+    </table>
+
+    <script src="js/index.js"></script>
+    <script src="js/Contato.js"></script>
+</body>
+
+</html>
