@@ -17,7 +17,7 @@
 
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="number" id="id" class="form-control" required autofocus />
+            <input type="number" id="id" class="form-control" disabled/>
         </div>
 
         <div class="form-group">
@@ -26,13 +26,8 @@
         </div>
 
         <div class="form-group">
-            <label for="ddd">DDD</label>
-            <input id="ddd" type="text" class="form-control" required />
-        </div>
-
-        <div class="form-group">
             <label for="numero">NÚMERO</label>
-            <input type="text" id="numero" class="form-control" required />
+            <input type="text" id="telefone" class="form-control cel-sp-mask" placeholder="Ex.: (00) 00000-0000" required>
         </div>
 
         <button class="btn btn-primary" type="submit">Incluir</button>
@@ -40,34 +35,17 @@
 
     <div class="text-center">
         <button class="btn btn-primary text-center" type="button">
-            Importar
-        </button>
-        <button class="btn btn-primary text-center" type="button">
-            Apagar
+            Alterar
         </button>
     </div>
     <br>
     <br>
 
-    <table class="table table-hover table-bordered" id="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NOME</th>
-                <th>DDD</th>
-                <th>NÚMERO</th>
-            </tr>
-        </thead>
+    <div id="tabela"></div>
 
-        <tbody>
-        </tbody>
-
-        <tfoot>
-        </tfoot>
-    </table>
-
-    <script src="js/index.js"></script>
-    <script src="js/Contato.js"></script>
+    <script src="js/views/AgendaView.js"></script>
+    <script src="js/models/Contato.js"></script>
+    <script src="js/services/Connection.js"></script>
 </body>
 
 </html>
