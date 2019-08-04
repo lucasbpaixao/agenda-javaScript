@@ -1,3 +1,4 @@
+var connection = null
 class Connection{
 
     static getConnection(){
@@ -6,7 +7,8 @@ class Connection{
             let request = window.indexedDB.open('contatos', 1);
 
             request.onupgradeneeded = (e) => {
-                request.createObjectStore('contato');
+                connection = e.target.result;
+                connection.createObjectStore('contato', {autoIncrement : true});
             };
 
             request.onsuccess = (e) => {
