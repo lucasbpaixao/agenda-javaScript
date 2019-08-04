@@ -6,6 +6,8 @@ class AgendaController{
         this._inputNome = $('#nome');
         this._inputTelefone = $('#telefone');
         this._agendaService = new AgendaService();
+        this._agendaView = new AgendaView($('#tabela'));
+        this._agendaView.update();
     }
 
     cadastrar(){

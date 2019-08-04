@@ -4,10 +4,10 @@ class AgendaView {
     }
 
     _template(contatos){
+
         return `<table class="table table-hover table-bordered" id="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>NOME</th>
                 <th>NÚMERO</th>
             </tr>
@@ -29,6 +29,8 @@ class AgendaView {
     }
 
     update(){
-        
+        let agendaService = new AgendaService();
+
+        this._elemento.innerHTML = this._template(agendaService.listarTodos());
     }
 }
