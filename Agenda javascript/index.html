@@ -30,7 +30,7 @@
             <input type="text" id="telefone" class="form-control cel-sp-mask" placeholder="Ex.: (00) 00000-0000" required>
         </div>
 
-        <button class="btn btn-primary" type="submit">Incluir</button>
+        <button class="btn btn-primary" onclick="controller.cadastrar()" type="submit">Incluir</button>
     </form>
 
     <div class="text-center">
@@ -46,6 +46,13 @@
     <script src="js/views/AgendaView.js"></script>
     <script src="js/models/Contato.js"></script>
     <script src="js/services/Connection.js"></script>
+    <script src="js/dao/AgendaDao.js"></script>
+    <script src="js/services/AgendaService.js"></script>
+    <script src="js/controllers/AgendaController.js"></script>
+
+    <script>
+        var controller = new AgendaController();
+    </script>
 </body>
 
 </html>
