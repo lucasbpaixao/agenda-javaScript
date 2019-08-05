@@ -1,18 +1,16 @@
 class AgendaService{
 
-    constructor(){
-        this._agendaDao = new AgendaDao();
-    }
     cadastrar(contato){
         return new Promise((resolve, reject) => {
-            this._agendaDao.cadastrarContato(contato).then(e => resolve()).catch(erro => reject(erro));
+            AgendaDao.cadastrarContato(contato).then(e => resolve()).catch(erro => reject(erro));
        });
     }
 
     listarTodos(){
-            let contatosArray = [];
-            this._agendaDao.listarTodos().then(contatos => contatosArray.concat(contatos)).catch(erro => reject(erro));
-            console.log('vish');
-            return contatosArray;
+        return new Promise((resolve, reject) => {
+            AgendaDao.listarTodos().then(contatos => {
+                resolve(contatos);
+            }).catch(erro => reject(erro));
+        });            
     }
 }
