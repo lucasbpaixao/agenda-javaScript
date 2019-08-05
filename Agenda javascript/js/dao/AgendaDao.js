@@ -1,5 +1,5 @@
 class AgendaDao {
-    cadastrarContato(contato) {
+    static cadastrarContato(contato) {
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
                 let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').add(contato);
@@ -13,11 +13,12 @@ class AgendaDao {
         });
     }
 
-    listarTodos(){
+    static listarTodos(){
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
-                let cursor = connection.transaction(['contato'], 'readwrite').objectStore('contato').openCursor();
+                let store = connection.transaction(['contato'], 'readwrite').objectStore('contato');
 
+                let cursor = store.openCursor();
                 let contatos = [];
 
                 cursor.onsuccess = e => {
@@ -25,7 +26,15 @@ class AgendaDao {
 
                     if(atual){
                         let dado = atual.value;
-                        contatos.push(dado.nome, dado.telefone);
+                        let id = atual.key;
+
+                        let contato = {
+                            id: id,
+                            nome: dado._nome,
+                            numero: dado._numero
+                        }
+                        contatos.push(contato);
+                        atual.continue();
                     }else{
                         resolve(contatos);
                     }
