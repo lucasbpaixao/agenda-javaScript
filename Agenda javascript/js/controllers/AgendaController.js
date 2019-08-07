@@ -36,6 +36,10 @@ class AgendaController{
         });
     }
 
+    preencherCampos(id){
+        
+    }
+
     _limpaFormulario(){
         this._inputId.value = '';
         this._inputNome.value = '';
