@@ -13,4 +13,14 @@ class AgendaService{
             }).catch(erro => reject(erro));
         });            
     }
+
+    excluir(id){
+        return new Promise((resolve, reject) => {
+            AgendaDao.excluir(id).then(() => {
+                resolve();
+            }).catch(erro => {
+                reject(erro);
+            });
+        });
+    }
 }

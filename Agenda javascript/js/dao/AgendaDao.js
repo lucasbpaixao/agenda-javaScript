@@ -46,4 +46,20 @@ class AgendaDao {
             });
         });
     }
+
+    static excluir(id){
+        return new Promise((resolve, reject) => {
+            Connection.getConnection().then(connection => {
+                let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').delete(id);
+                
+                request.onsuccess = e => {
+                    resolve();
+                };
+
+                request.onerror = e => {
+                    reject(e.target.error);
+                }
+            });
+        });
+    }
 }
