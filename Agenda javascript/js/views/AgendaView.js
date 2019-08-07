@@ -11,6 +11,8 @@ class AgendaView {
                 <th>ID</th>
                 <th>NOME</th>
                 <th>NÚMERO</th>
+                <th>EXCLUIR</th>
+                <th>PREENCHER CAMPOS</th>
             </tr>
         </thead>
 
@@ -20,6 +22,8 @@ class AgendaView {
                     <td> ${c.id} </td>
                     <td> ${c.nome} </td>
                     <td> ${c.numero} </td>
+                    <td><a align="center"> <button type="button" onclick="controller.excluir(${c.id})" class="btn btn-success">Excluir</button> </a></td>
+                    <td><a align="center"> <button type="button" onclick="controller.preencherCampos(${c.id})" class="btn btn-success">Preencher Campos</button> </a></td>
                 </tr>
             `)}
         </tbody>
