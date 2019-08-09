@@ -13,7 +13,7 @@ class AgendaDao {
         });
     }
 
-    static listarTodos(){
+    static listarTodos() {
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
                 let store = connection.transaction(['contato'], 'readwrite').objectStore('contato');
@@ -24,7 +24,7 @@ class AgendaDao {
                 cursor.onsuccess = e => {
                     let atual = e.target.result;
 
-                    if(atual){
+                    if (atual) {
                         let dado = atual.value;
                         let id = atual.key;
 
@@ -35,7 +35,7 @@ class AgendaDao {
                         }
                         contatos.push(contato);
                         atual.continue();
-                    }else{
+                    } else {
                         resolve(contatos);
                     }
                 };
@@ -47,11 +47,11 @@ class AgendaDao {
         });
     }
 
-    static excluir(id){
+    static excluir(id) {
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
                 let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').delete(id);
-                
+
                 request.onsuccess = e => {
                     resolve();
                 };
@@ -61,5 +61,30 @@ class AgendaDao {
                 }
             });
         });
+    }
+
+    static preencherCampos(id) {
+
+        return new Promise((resolve, reject) => {
+            Connection.getConnection().then(connection => {
+                let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').get(id);
+
+                request.onsuccess = e => {
+                    let contato = {
+                        id : id,
+                        nome: e.target.result._nome,
+                        numero: e.target.result._numero
+                    }
+
+                    resolve(contato);
+
+                };
+
+                request.onerror = e => {
+                    reject(e.target.error);
+                };
+            });
+        });
+
     }
 }

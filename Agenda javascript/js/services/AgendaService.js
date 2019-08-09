@@ -23,4 +23,15 @@ class AgendaService{
             });
         });
     }
+
+    preencherCampos(id){
+        return new Promise((resolve, reject) => {
+            AgendaDao.preencherCampos(id).then((contato) => {
+                resolve(contato);
+                console.log(contato);
+            }).catch(erro => {
+                reject(erro);
+            });
+        });
+    }
 }
