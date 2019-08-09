@@ -34,10 +34,18 @@ class AgendaController{
             console.log(erro);
             this._mensagemView.update('Não foi possivel excluir o contato', 'erro');
         });
+
+        this._limpaFormulario();
     }
 
     preencherCampos(id){
-        
+        this._agendaService.preencherCampos(id).then(contato => {
+            this._inputId.value =  contato.id;
+            this._inputNome.value = contato.nome;
+            this._inputTelefone.value = contato.numero;
+
+            this._mensagemView.update('Campos Preenchidos', 'sucesso');
+        });
     }
 
     _limpaFormulario(){
