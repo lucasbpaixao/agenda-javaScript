@@ -71,7 +71,7 @@ class AgendaDao {
 
                 request.onsuccess = e => {
                     let contato = {
-                        id : id,
+                        id: id,
                         nome: e.target.result._nome,
                         numero: e.target.result._numero
                     }
@@ -87,4 +87,21 @@ class AgendaDao {
         });
 
     }
+
+    static alterar(contato) {
+
+        return new Promise((resolve, reject) => {
+            Connection.getConnection().then(connection => {
+                let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').put(contato);
+
+                request.onsuccess = () => {
+                    resolve();
+                }
+
+                request.onerror = e => {
+                    reject(e.target.error);
+                }
+            });
+        });
+}
 }

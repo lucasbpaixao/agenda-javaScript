@@ -1,18 +1,19 @@
-class Contato{
-    constructor(nome, numero){
-      this._nome = nome;
-      this._numero = numero;
+class Contato {
+    constructor(id, nome, numero) {
+        this._id = id;
+        this._nome = nome;
+        this._numero = numero;
     }
 
-    get getId(){
+    get getId() {
         return this._id;
     }
 
-    get getNome(){
+    get getNome() {
         return this._nome;
     }
-    
-    get getNumero(){
+
+    get getNumero() {
         return this._numero;
     }
 }

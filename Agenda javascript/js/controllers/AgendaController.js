@@ -14,7 +14,7 @@ class AgendaController{
 
     cadastrar(){
         event.preventDefault();
-        let contato = new Contato(this._inputNome.value, this._inputTelefone.value);
+        let contato = new Contato(null, this._inputNome.value, this._inputTelefone.value);
         this._agendaService.cadastrar(contato).then(() => {
             this._agendaView.update();
             this._mensagemView.update('Contato Cadastrado com Sucesso', 'sucesso');
@@ -45,6 +45,19 @@ class AgendaController{
             this._inputTelefone.value = contato.numero;
 
             this._mensagemView.update('Campos Preenchidos', 'sucesso');
+        });
+    }
+
+    alterar(){
+        let contato = new Contato(this._inputId.value, this._inputNome.value, this._inputTelefone.value);
+
+        this._agendaService.alterar(contato).then(() => {
+
+            this._mensagemView.update('Contato Alterado com Sucesso', 'sucesso');
+            this._agendaView.update();
+        }).catch(erro => {
+            console.log(erro);
+            this._mensagemView.uptade('Não foi Possivel Alterar o Contato', 'erro');
         });
     }
 
