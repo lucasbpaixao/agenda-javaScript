@@ -34,4 +34,10 @@ class AgendaService{
             });
         });
     }
+
+    alterar(contato){
+        return new Promise((resolve, reject) => {
+            AgendaDao.alterar(contato).then(e => resolve()).catch(erro => reject(erro));
+       });
+    }
 }
