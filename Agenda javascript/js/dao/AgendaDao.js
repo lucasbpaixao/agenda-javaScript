@@ -92,12 +92,23 @@ class AgendaDao {
 
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
-                let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').put(contato);
+                let objectStore = connection.transaction(['contato'], 'readwrite').objectStore('contato');
+                
+                let id = parseInt(contato._id);
+                let request = objectStore.get(id);
 
-                request.onsuccess = () => {
-                    resolve();
+                request.onsuccess = e => {
+                    let objeto = e.target;
+                    console.log(objeto);
+                    let requestExcluir = objectStore.delete(objeto.source.getKey);
+                    requestExcluir.onsuccess = e => {
+                        let requestAdd = objectStore.add(objeto);
+
+                        requestAdd.onsuccess = e => {
+                            resolve();
+                        }
+                    }
                 }
-
                 request.onerror = e => {
                     reject(e.target.error);
                 }
