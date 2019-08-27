@@ -4,11 +4,11 @@ class Connection{
     static getConnection(){
         
         return new Promise((resolve, reject) => {
-            let request = window.indexedDB.open('contatos', 1);
+            let request = window.indexedDB.open('contatos', 3);
 
             request.onupgradeneeded = (e) => {
                 connection = e.target.result;
-                connection.createObjectStore('contato', {autoIncrement : true});
+                connection.createObjectStore('contato', {keyPath: '_id', autoIncrement : true});
             };
 
             request.onsuccess = (e) => {

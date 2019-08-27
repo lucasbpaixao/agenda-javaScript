@@ -2,6 +2,8 @@ class AgendaDao {
     static cadastrarContato(contato) {
         return new Promise((resolve, reject) => {
             Connection.getConnection().then(connection => {
+
+                console.log(contato.getId);
                 let request = connection.transaction(['contato'], 'readwrite').objectStore('contato').add(contato);
                 request.onsuccess = e => {
                     resolve();
@@ -98,15 +100,15 @@ class AgendaDao {
                 let request = objectStore.get(id);
 
                 request.onsuccess = e => {
-                    let objeto = e.target;
-                    console.log(objeto);
-                    let requestExcluir = objectStore.delete(objeto.source.getKey);
-                    requestExcluir.onsuccess = e => {
-                        let requestAdd = objectStore.add(objeto);
+                    let objeto = e.target.result;
+                    
+                    objeto.key = contato.getId;
+                    objeto._nome = contato.getNome;
+                    objeto._numero = contato.getNumero;
 
-                        requestAdd.onsuccess = e => {
-                            resolve();
-                        }
+                    let requestAlterar = objectStore.put(objeto);
+                    requestAlterar.onsuccess = e => {
+                        resolve();
                     }
                 }
                 request.onerror = e => {

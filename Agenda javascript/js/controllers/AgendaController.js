@@ -14,7 +14,7 @@ class AgendaController{
 
     cadastrar(){
         event.preventDefault();
-        let contato = new Contato(null, this._inputNome.value, this._inputTelefone.value);
+        let contato = new Contato(parseFloat((Math.random() * 100).toFixed(0)), this._inputNome.value, this._inputTelefone.value);
         this._agendaService.cadastrar(contato).then(() => {
             this._agendaView.update();
             this._mensagemView.update('Contato Cadastrado com Sucesso', 'sucesso');
